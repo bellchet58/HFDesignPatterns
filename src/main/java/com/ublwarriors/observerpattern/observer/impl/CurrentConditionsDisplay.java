@@ -1,26 +1,32 @@
 package com.ublwarriors.observerpattern.observer.impl;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import com.ublwarriors.observerpattern.Subject;
+import com.ublwarriors.observerpattern.WeatherData;
 import com.ublwarriors.observerpattern.observer.DisplayElement;
-import com.ublwarriors.observerpattern.observer.Observer;
 
 public class CurrentConditionsDisplay implements Observer,DisplayElement {
 	
 	private float temperature;
 	private float humidity;
-	private Subject weatherData;
+	private Observable observable;
 	
-	public CurrentConditionsDisplay(Subject weatherData)
+	public CurrentConditionsDisplay(Observable observable)
 	{
-		this.weatherData = weatherData;
-		weatherData.registerObserver(this);
+		this.observable = observable;
+		observable.addObserver(this);
 	}
 	
-	@Override
-	public void update(float temp, float humidity, float pressure) {
-		temperature = temp;
-		this.humidity = humidity;
-		display();
+	public void update(Observable o, Object arg){
+		if(o instanceof WeatherData)
+		{
+			WeatherData weatherData = (WeatherData) o;
+			this.temperature = weatherData.getTemperature();
+			this.humidity = weatherData.getHumidity();
+			display();
+		}
 	}
 
 	@Override

@@ -1,13 +1,12 @@
 package com.ublwarriors.observerpattern;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
 import com.ublwarriors.observerpattern.observer.Observer;
 
-public class WeatherData implements Subject{
+public class WeatherData extends Observable{
 
-	private ArrayList<Observer> observers;
-	
 	private float temperature;
 	
 	private float humidity;
@@ -16,32 +15,12 @@ public class WeatherData implements Subject{
 	
 	public WeatherData()
 	{
-		observers = new ArrayList<Observer>();
 	}
 	
-	@Override
-	public void registerObserver(Observer o) {
-		observers.add(o);
-	}
-
-	@Override
-	public void removeObserver(Observer o) {
-		if(observers.indexOf(o)>=0)
-		{
-			observers.remove(o);
-		}
-	}
-
-	@Override
-	public void notifyObservers() {
-		for(Observer o:observers)
-		{
-			o.update(temperature, humidity, pressure);
-		}
-	}
 	
 	public void measurementsChanged()
 	{
+		setChanged();
 		notifyObservers();
 	}
 	
@@ -53,4 +32,16 @@ public class WeatherData implements Subject{
 		measurementsChanged();
 	}
 
+	public float getTemperature()
+	{
+		return temperature;
+	}
+	public float getHumidity()
+	{
+		return humidity;
+	}
+	public float getPressure()
+	{
+		return pressure;
+	}
 }

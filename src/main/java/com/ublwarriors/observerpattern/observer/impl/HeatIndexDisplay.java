@@ -1,24 +1,22 @@
 package com.ublwarriors.observerpattern.observer.impl;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import com.ublwarriors.observerpattern.Subject;
 import com.ublwarriors.observerpattern.WeatherData;
 import com.ublwarriors.observerpattern.observer.DisplayElement;
-import com.ublwarriors.observerpattern.observer.Observer;
 
 public class HeatIndexDisplay implements DisplayElement, Observer {
 	private float heatIndex = 0.0f;
-	private WeatherData weatherData;
+	private Observable weatherData;
 	
-	public HeatIndexDisplay(WeatherData weatherData) {
+	public HeatIndexDisplay(Observable weatherData) {
 		this.weatherData = weatherData;
-		weatherData.registerObserver(this);
+		weatherData.addObserver(this);
 	}
 	
-	@Override
-	public void update(float temp, float humidity, float pressure) {
-		heatIndex = computeHeatIndex(temp,humidity);
-		display();
-	}
+	
 
 	private float computeHeatIndex(float t, float rh) {
 		float index = (float)((16.923 + (0.185212 * t) + (5.37941 * rh) - (0.100254 * t * rh) +
@@ -35,6 +33,17 @@ public class HeatIndexDisplay implements DisplayElement, Observer {
 	@Override
 	public void display() {
 		System.out.println("Heat index is :"+heatIndex);
+	}
+
+
+
+	@Override
+	public void update(Observable o, Object arg) {
+		if(o instanceof WeatherData)
+		{
+			WeatherData weatherData = (WeatherData) o;
+			this.heatIndex = computeHeatIndex(weatherData.getTemperature(), weatherData.getHumidity());
+		}
 	}
 
 }
