@@ -9,7 +9,7 @@ import com.ublwarriors.factorypattern.di.pizzas.Pizza;
 import com.ublwarriors.factorypattern.di.pizzas.VeggiePizza;
 
 public class NYPizzaStore extends PizzaStore {
-	
+//	Factory Method
 	@Override
 	protected Pizza createPizza(String item) {
 		Pizza pizza = null;
