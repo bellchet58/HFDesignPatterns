@@ -1,5 +1,10 @@
 package com.ublwarriors.commandpattern;
 
+import com.ublwarriors.commandpattern.remote.command.GarageDoorOpenCommand;
+import com.ublwarriors.commandpattern.remote.command.LightOnCommand;
+import com.ublwarriors.commandpattern.remote.obj.GarageDoor;
+import com.ublwarriors.commandpattern.remote.obj.Light;
+
 public class RemoteControlTest {
 	public static void main(String[] args) {
 		SimpleRemoteControl remote = new SimpleRemoteControl();

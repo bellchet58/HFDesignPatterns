@@ -1,4 +1,7 @@
-package com.ublwarriors.commandpattern;
+package com.ublwarriors.commandpattern.remote;
+
+import com.ublwarriors.commandpattern.remote.command.Command;
+import com.ublwarriors.commandpattern.remote.command.NoCommand;
 
 public class RemoteControl {
 	Command[] onCommands;

@@ -1,4 +1,6 @@
-package com.ublwarriors.commandpattern;
+package com.ublwarriors.commandpattern.remote.command;
+
+import com.ublwarriors.commandpattern.remote.obj.GarageDoor;
 
 public class GarageDoorOpenCommand implements Command{
 	GarageDoor door;

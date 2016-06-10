@@ -1,4 +1,6 @@
-package com.ublwarriors.commandpattern;
+package com.ublwarriors.commandpattern.remote.command;
+
+import com.ublwarriors.commandpattern.remote.obj.Light;
 
 public class LightOnCommand implements Command{
 	Light light;
@@ -11,4 +13,5 @@ public class LightOnCommand implements Command{
 	{
 		light.on();
 	}
+	
 }
